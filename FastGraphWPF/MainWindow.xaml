@@ -1,0 +1,57 @@
+﻿<Window x:Class="FastGraphWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FastGraphWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="465.469" Width="569.201" ResizeMode="NoResize">
+    <Grid>
+        <ListView x:Name="GraphListView" HorizontalAlignment="Left" Height="297" Margin="133,24,0,0" VerticalAlignment="Top" Width="418">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Имя" Width="50" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Кол-во точек" Width="100" DisplayMemberBinding="{Binding CountPoints}"/>
+                    <GridViewColumn Header="Кол-во рёбер" Width="100" DisplayMemberBinding="{Binding CountRibs}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid HorizontalAlignment="Left" Height="297" Margin="10,24,0,0" VerticalAlignment="Top" Width="118">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.1"/>
+            </Grid.Background>
+            <Grid.OpacityMask>
+                <SolidColorBrush Color="Black"/>
+            </Grid.OpacityMask>
+            <Button x:Name="But_ADD" Content="Добавить" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="But_ADD_Click"/>
+            <Button x:Name="But_DELETE" Content="Удалить" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="But_DELETE_Click"/>
+            <Button x:Name="But_UPDATE" Content="Обновить" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="But_UPDATE_Click"/>
+        </Grid>
+        <Label Content="Graph" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="21,24,0,0" FontSize="14" Width="97" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <Grid HorizontalAlignment="Left" Height="100" Margin="10,326,0,0" VerticalAlignment="Top" Width="541">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.1"/>
+            </Grid.Background>
+            <TextBox x:Name="TextRibs" HorizontalAlignment="Left" Height="22" Margin="411,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+            <Button x:Name="Ribs_ADD" HorizontalAlignment="Left" Margin="516,37,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="Ribs_ADD_Click">
+                <Image x:Name="Plus_ADD" Source="Resource/Плюс отажаат.png" Stretch="Fill" Height="14" Width="14"/>
+            </Button>
+            <Button x:Name="Ribs_DEL" HorizontalAlignment="Left" Margin="516,64,0,0" VerticalAlignment="Top" Width="22" Height="22">
+                <Image HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Width="18" Source="Resource/Минус отжат.png"/>
+            </Button>
+            <ComboBox x:Name="ComboRibs" HorizontalAlignment="Left" Margin="411,64,0,0" VerticalAlignment="Top" Width="100"/>
+            <Label Content="Точки графа" HorizontalAlignment="Left" Margin="276,6,0,0" VerticalAlignment="Top"/>
+            <Label Content="Рёбра графа" HorizontalAlignment="Left" Margin="411,6,0,0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment="Left" Height="22" Margin="168,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+            <Label Content="Имя графа" HorizontalAlignment="Left" Margin="168,6,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="Points_ADD" HorizontalAlignment="Left" Margin="381,37,0,0" VerticalAlignment="Top" Width="22" Height="22">
+                <Image x:Name="Plus_ADD1" Source="Resource/Плюс отажаат.png" Stretch="Fill" Height="14" Width="14"/>
+            </Button>
+            <Button x:Name="Points_DEL" HorizontalAlignment="Left" Margin="381,64,0,0" VerticalAlignment="Top" Width="22" Height="22">
+                <Image HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Width="18" Source="Resource/Минус отжат.png"/>
+            </Button>
+            <ComboBox x:Name="ComboRibs_Copy" HorizontalAlignment="Left" Margin="276,64,0,0" VerticalAlignment="Top" Width="100"/>
+            <TextBox x:Name="TextPoints" HorizontalAlignment="Left" Height="22" Margin="276,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        </Grid>
+    </Grid>
+</Window>
