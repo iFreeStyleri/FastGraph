@@ -36,21 +36,21 @@
             <Button x:Name="Ribs_ADD" HorizontalAlignment="Left" Margin="516,37,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="Ribs_ADD_Click">
                 <Image x:Name="Plus_ADD" Source="Resource/Плюс отажаат.png" Stretch="Fill" Height="14" Width="14"/>
             </Button>
-            <Button x:Name="Ribs_DEL" HorizontalAlignment="Left" Margin="516,64,0,0" VerticalAlignment="Top" Width="22" Height="22">
+            <Button x:Name="Ribs_DEL" HorizontalAlignment="Left" Margin="516,64,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="Ribs_DEL_Click">
                 <Image HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Width="18" Source="Resource/Минус отжат.png"/>
             </Button>
             <ComboBox x:Name="ComboRibs" HorizontalAlignment="Left" Margin="411,64,0,0" VerticalAlignment="Top" Width="100"/>
             <Label Content="Точки графа" HorizontalAlignment="Left" Margin="276,6,0,0" VerticalAlignment="Top"/>
             <Label Content="Рёбра графа" HorizontalAlignment="Left" Margin="411,6,0,0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment="Left" Height="22" Margin="168,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+            <TextBox x:Name="TextName" HorizontalAlignment="Left" Height="22" Margin="168,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
             <Label Content="Имя графа" HorizontalAlignment="Left" Margin="168,6,0,0" VerticalAlignment="Top"/>
-            <Button x:Name="Points_ADD" HorizontalAlignment="Left" Margin="381,37,0,0" VerticalAlignment="Top" Width="22" Height="22">
+            <Button x:Name="Points_ADD" HorizontalAlignment="Left" Margin="381,37,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="Points_ADD_Click">
                 <Image x:Name="Plus_ADD1" Source="Resource/Плюс отажаат.png" Stretch="Fill" Height="14" Width="14"/>
             </Button>
-            <Button x:Name="Points_DEL" HorizontalAlignment="Left" Margin="381,64,0,0" VerticalAlignment="Top" Width="22" Height="22">
+            <Button x:Name="Points_DEL" HorizontalAlignment="Left" Margin="381,64,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="Points_DEL_Click">
                 <Image HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Width="18" Source="Resource/Минус отжат.png"/>
             </Button>
-            <ComboBox x:Name="ComboRibs_Copy" HorizontalAlignment="Left" Margin="276,64,0,0" VerticalAlignment="Top" Width="100"/>
+            <ComboBox x:Name="ComboPoints" HorizontalAlignment="Left" Margin="276,64,0,0" VerticalAlignment="Top" Width="100"/>
             <TextBox x:Name="TextPoints" HorizontalAlignment="Left" Height="22" Margin="276,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
         </Grid>
     </Grid>
