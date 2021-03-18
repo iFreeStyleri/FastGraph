@@ -21,27 +21,22 @@ namespace FastGraphWPF
         public List<int> Points { get; set; }
 
         public Graph() { }
-        public Graph(List<Rib>ribs, List<int>points)
+        public Graph(List<Rib>ribs, List<int>points, string name)
         {
-            if(Ribs != null)
-                Ribs.Clear();
-            if(Points != null)
-                Points.Clear();
-            if (Id != null)
-                Id = null;
             Ribs = ribs;
             Points = points;
+            Name = name;
             Id = Guid.NewGuid().ToString();
         }
 
         public Graph(Rib[]ribs,int[] points)
         {
-            if (Ribs != null)
-                Ribs.Clear();
-            if (Points != null)
-                Points.Clear();
+            Ribs.Clear();
+            Points.Clear();
             Ribs.AddRange(ribs);
             Points.AddRange(points);
+            Id = Guid.NewGuid().ToString();
         }
+        
     }
 }

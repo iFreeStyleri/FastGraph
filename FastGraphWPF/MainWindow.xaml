@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FastGraphWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="465.469" Width="569.201" ResizeMode="NoResize">
+        Title="MainWindow" Height="445.469" Width="569.201" ResizeMode="NoResize">
     <Grid>
-        <ListView x:Name="GraphListView" HorizontalAlignment="Left" Height="297" Margin="133,24,0,0" VerticalAlignment="Top" Width="418">
+        <ListView x:Name="GraphListView" HorizontalAlignment="Left" Height="297" Margin="133,115,0,0" VerticalAlignment="Top" Width="418" Foreground="Black">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Имя" Width="50" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Кол-во точек" Width="100" DisplayMemberBinding="{Binding CountPoints}"/>
-                    <GridViewColumn Header="Кол-во рёбер" Width="100" DisplayMemberBinding="{Binding CountRibs}"/>
+                    <GridViewColumn Header="Кол-во точек" Width="80" DisplayMemberBinding="{Binding CountPoints}"/>
+                    <GridViewColumn Header="Кол-во рёбер" Width="80" DisplayMemberBinding="{Binding CountRibs}"/>
+                    <GridViewColumn Header="Id" Width="0" DisplayMemberBinding="{Binding Id}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid HorizontalAlignment="Left" Height="297" Margin="10,24,0,0" VerticalAlignment="Top" Width="118">
+        <Grid HorizontalAlignment="Left" Height="297" Margin="10,115,0,0" VerticalAlignment="Top" Width="118">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.1"/>
             </Grid.Background>
@@ -26,9 +27,12 @@
             <Button x:Name="But_ADD" Content="Добавить" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="But_ADD_Click"/>
             <Button x:Name="But_DELETE" Content="Удалить" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="But_DELETE_Click"/>
             <Button x:Name="But_UPDATE" Content="Обновить" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="But_UPDATE_Click"/>
+            <ComboBox x:Name="ComboMover" HorizontalAlignment="Left" Margin="11,177,0,0" VerticalAlignment="Top" Width="97" SelectionChanged="ComboMover_SelectionChanged"/>
+            <Label Content="Действие" HorizontalAlignment="Left" Margin="11,143,0,0" VerticalAlignment="Top" Width="97" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14"/>
+            <Label Content="Graph " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,0,0,0" FontSize="16" Width="72" HorizontalContentAlignment="Center" FontWeight="Bold" Height="33"/>
+            <Button x:Name="But_Mover" Content="Выполнить" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="But_Mover_Click" IsEnabled="False"/>
         </Grid>
-        <Label Content="Graph" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="21,24,0,0" FontSize="14" Width="97" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-        <Grid HorizontalAlignment="Left" Height="100" Margin="10,326,0,0" VerticalAlignment="Top" Width="541">
+        <Grid HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="541">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.1"/>
             </Grid.Background>
@@ -51,7 +55,7 @@
                 <Image HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Width="18" Source="Resource/Минус отжат.png"/>
             </Button>
             <ComboBox x:Name="ComboPoints" HorizontalAlignment="Left" Margin="276,64,0,0" VerticalAlignment="Top" Width="100"/>
-            <TextBox x:Name="TextPoints" HorizontalAlignment="Left" Height="22" Margin="276,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+            <TextBox x:Name="TextPoints" HorizontalAlignment="Left" Height="22" Margin="276,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" KeyDown="TextPoints_KeyDown"/>
         </Grid>
     </Grid>
 </Window>
