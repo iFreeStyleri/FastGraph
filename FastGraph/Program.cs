@@ -17,9 +17,9 @@ namespace FastGraph
             ribs.Add(new Rib() { x = 2, y = 3 });
 
             List<Rib> ribs1 = new List<Rib>();
-            ribs1.Add(new Rib() { x = 2, y = 4 });
+            ribs1.Add(new Rib() { x = 2, y = 1 });
             ribs1.Add(new Rib() { x = 5, y = 1 });
-            ribs1.Add(new Rib() { x = 3, y = 1 });
+            ribs1.Add(new Rib() { x = 3, y = 3 });
             ribs1.Add(new Rib() { x = 5, y = 3 });
 
             List<int> points = new List<int>() 
@@ -30,15 +30,15 @@ namespace FastGraph
 
             Graph graph = new Graph(ribs, points);
             Graph graph1 = new Graph(ribs1, points1);
-            var MainGraph = GraphOperation.Crossing(graph,graph1);
+            var MainGraph = GraphOperation.Union(graph,graph1);
             Console.Write("Вершины: ");
-            foreach (var point in graph1.Points)
+            foreach (var point in MainGraph.Points)
             {
                 Console.Write($"{point} ");
             }
             Console.WriteLine();
             Console.Write("Рёбра:");
-            foreach (var rib in graph1.Ribs)
+            foreach (var rib in MainGraph.Ribs)
             {
                 Console.Write($" ({rib.x},{rib.y}) ");
             }

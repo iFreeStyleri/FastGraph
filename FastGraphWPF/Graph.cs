@@ -14,13 +14,17 @@ namespace FastGraphWPF
     public class Graph
     {
         public string Id { get; private set; }
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public byte[,] AdjancenceMatrix { get; set; }
         public byte[,] IncidenceMatrix { get; set; }
         public List<Rib> Ribs { get; set; }
         public List<int> Points { get; set; }
 
-        public Graph() { }
+        public Graph()
+        { 
+            Ribs = new List<Rib>();
+            Points = new List<int>();
+        }
         public Graph(List<Rib>ribs, List<int>points, string name)
         {
             Ribs = ribs;
@@ -31,10 +35,8 @@ namespace FastGraphWPF
 
         public Graph(Rib[]ribs,int[] points)
         {
-            Ribs.Clear();
-            Points.Clear();
-            Ribs.AddRange(ribs);
-            Points.AddRange(points);
+            Ribs = ribs.ToList();
+            Points = points.ToList();
             Id = Guid.NewGuid().ToString();
         }
         

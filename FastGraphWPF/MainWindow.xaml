@@ -7,15 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="445.469" Width="569.201" ResizeMode="NoResize">
     <Grid>
-        <ListView x:Name="GraphListView" HorizontalAlignment="Left" Height="297" Margin="133,115,0,0" VerticalAlignment="Top" Width="418" Foreground="Black">
+        <ListView x:Name="GraphListView" HorizontalAlignment="Left" Height="297" Margin="133,115,0,0" VerticalAlignment="Top" Width="418" Foreground="Black" MouseDoubleClick="GraphListView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Имя" Width="50" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Id" Width="0" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Имя" Width="120" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Кол-во точек" Width="80" DisplayMemberBinding="{Binding CountPoints}"/>
                     <GridViewColumn Header="Кол-во рёбер" Width="80" DisplayMemberBinding="{Binding CountRibs}"/>
-                    <GridViewColumn Header="Id" Width="0" DisplayMemberBinding="{Binding Id}"/>
                 </GridView>
             </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="matrixAdj" Header="Матрица смежности" Click="Click_matrixAdjContext"/>
+                    <MenuItem x:Name="matrixInc" Header="Матрица инцидентности" Click="Click_matrixIncContext"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
         </ListView>
         <Grid HorizontalAlignment="Left" Height="297" Margin="10,115,0,0" VerticalAlignment="Top" Width="118">
             <Grid.Background>
@@ -32,7 +38,7 @@
             <Label Content="Graph " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,0,0,0" FontSize="16" Width="72" HorizontalContentAlignment="Center" FontWeight="Bold" Height="33"/>
             <Button x:Name="But_Mover" Content="Выполнить" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top" Width="98" Height="30" Click="But_Mover_Click" IsEnabled="False"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="541">
+        <Grid x:Name="MainGrid" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="541">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.1"/>
             </Grid.Background>
@@ -46,8 +52,12 @@
             <ComboBox x:Name="ComboRibs" HorizontalAlignment="Left" Margin="411,64,0,0" VerticalAlignment="Top" Width="100"/>
             <Label Content="Точки графа" HorizontalAlignment="Left" Margin="276,6,0,0" VerticalAlignment="Top"/>
             <Label Content="Рёбра графа" HorizontalAlignment="Left" Margin="411,6,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TextName" HorizontalAlignment="Left" Height="22" Margin="168,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-            <Label Content="Имя графа" HorizontalAlignment="Left" Margin="168,6,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TextName" HorizontalAlignment="Left" Height="22" Margin="121,37,0,0" VerticalAlignment="Top" Width="147" MaxLines="1">
+                <TextBox.BindingGroup>
+                    <BindingGroup/>
+                </TextBox.BindingGroup>
+            </TextBox>
+            <Label Content="Имя графа" HorizontalAlignment="Left" Margin="121,6,0,0" VerticalAlignment="Top"/>
             <Button x:Name="Points_ADD" HorizontalAlignment="Left" Margin="381,37,0,0" VerticalAlignment="Top" Width="22" Height="22" Click="Points_ADD_Click">
                 <Image x:Name="Plus_ADD1" Source="Resource/Плюс отажаат.png" Stretch="Fill" Height="14" Width="14"/>
             </Button>

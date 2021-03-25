@@ -30,8 +30,4 @@ namespace FastGraphWPF
             CountRibs = graph.Ribs.Count;
         }
     }
-
-    class GraphViewAdd
-    {
-    }
 }

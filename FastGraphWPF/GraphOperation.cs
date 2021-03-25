@@ -11,15 +11,13 @@ namespace FastGraphWPF
         public static Graph Union(Graph graph1, Graph graph2)
         {
             var graph = new Graph();
-
-            graph.Ribs = graph1.Ribs;
+            graph.Ribs.AddRange(graph1.Ribs);
             graph.Ribs.AddRange(graph2.Ribs);
-            graph.Points = graph1.Points;
+            graph.Points.AddRange(graph1.Points);
             graph.Points.AddRange(graph2.Points);
 
-            graph.Points = graph.Points.Distinct().ToList();
-            graph.Ribs = graph.Ribs.Distinct().ToList();
-            return graph;
+            var graphMain = new Graph(graph.Ribs.Distinct().ToList(), graph.Points.Distinct().ToList(), $"{graph1.Name} + {graph2.Name}");
+            return graphMain;
         }
 
         public static Graph Crossing(Graph graph1, Graph graph2)
@@ -44,6 +42,8 @@ namespace FastGraphWPF
             {
                 graph.Points.Remove(points[j]);
             }
+
+            graph.Name = $"{graph1.Name} && {graph2.Name}";
             return graph;
         }
 

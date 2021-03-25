@@ -22,7 +22,8 @@ namespace FastGraphWPF
     public partial class MainWindow : Window
     {
         List<Graph> Graphs { get; set; }
-        string[] ChoiceMove = {"Матрица Смежности", "Матрица Инцидентности", "Объединение", "Пересечение" };
+        string[] ChoiceMove = {"Объединение", "Пересечение" };
+        string[] ChoiceMenu = { "Матрица смежности", "Матрица инцидентности" };
         public MainWindow()
         {
             InitializeComponent();
@@ -50,9 +51,7 @@ namespace FastGraphWPF
         void Start()
         {
             foreach (var choice in ChoiceMove)
-            {
                 ComboMover.Items.Add(choice);
-            }
         }
         #region Contorls
         private void Ribs_ADD_Click(object sender, RoutedEventArgs e)
@@ -194,13 +193,46 @@ namespace FastGraphWPF
         {
             if (GraphListView.SelectedItems.Count == 2)
             {
-                
-                foreach (var graphObj in GraphListView.SelectedItems)
+                Graph graph1 = new Graph();
+                Graph graph2 = new Graph();
+                if (ChoiceMove[3] == (string)ComboMover.SelectedItem || ChoiceMove[2] == (string)ComboMover.SelectedItem)
                 {
-                    if(ChoiceMove[4] == (string)ComboMover.SelectedItem)
-                    {
+                    bool graph1Exist = false;
+                    bool graph2Exist = false;
+                    var graphView1 = (GraphView)GraphListView.SelectedItems[0];
+                    var graphView2 = (GraphView)GraphListView.SelectedItems[1];
 
+                    foreach (var graph in Graphs)
+                    {
+                        if (graphView1.Id == graph.Id)
+                        {
+                            graph1 = new Graph(graph.Ribs, graph.Points, graph.Name);
+                            graph1Exist = true;
+                        }
+                        if (graphView2.Id == graph.Id)
+                        {
+                            graph2 = new Graph(graph.Ribs, graph.Points, graph.Name);
+                            graph2Exist = true;
+                        }
+                        if (graph1Exist && graph2Exist)
+                            break;
                     }
+
+                    if (graph1Exist && graph2Exist && graph1.Points != null && graph2.Points !=null)
+                    {
+                        if (ChoiceMove[1] == (string)ComboMover.SelectedItem)
+                        {
+                            Graphs.Add(GraphOperation.Union(graph1, graph2));
+                            UpdateView();
+                        }
+                        else if(ChoiceMove[0] == (string)ComboMover.SelectedItem)
+                        {
+                            Graphs.Add(GraphOperation.Crossing(graph1, graph2));
+                            UpdateView();
+                        }
+                    }
+                    else
+                        MessageBox.Show("Граф(ы) не найдены", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
@@ -238,6 +270,66 @@ namespace FastGraphWPF
                 }
                 else
                     But_Mover.IsEnabled = false;
+            }
+        }
+
+        private void GraphListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(GraphListView.SelectedItem != null)
+            {
+                var mainGraph = new Graph();
+                var graphView = (GraphView)GraphListView.SelectedItem;
+                foreach (var graph in Graphs)
+                {
+                    if(graphView.Id == graph.Id)
+                    {
+                        mainGraph = new Graph(graph.Ribs, graph.Points, graph.Name);
+                        break;
+                    }
+                }
+                ComboPoints.Items.Clear();
+                ComboRibs.Items.Clear();
+                foreach (var point in mainGraph.Points)
+                {
+                    ComboPoints.Items.Add(point);
+                }
+                foreach (var ribs in mainGraph.Ribs)
+                {
+                    ComboRibs.Items.Add($"({ribs.x},{ribs.y})");
+                }
+                TextName.Text = mainGraph.Name;
+            }
+        }
+
+        private void Click_matrixIncContext(object sender, RoutedEventArgs e)
+        {
+            if (GraphListView.SelectedItems != null)
+            {
+                foreach (var graph in Graphs)
+                {
+                    if ((graph.Id == ((GraphView)GraphListView.SelectedItem).Id))
+                    {
+                        
+                        MainIncidence mainInc = new MainIncidence(GraphOperation.GetIncidenceMatrix(graph));
+                        mainInc.Show();
+                    } 
+                }
+            }
+        }
+
+        private void Click_matrixAdjContext(object sender, RoutedEventArgs e)
+        {
+            if (GraphListView.SelectedItems != null)
+            {
+                foreach (var graph in Graphs)
+                {
+                    if ((graph.Id == ((GraphView)GraphListView.SelectedItem).Id))
+                    {
+
+                        MainIncidence mainInc = new MainIncidence(GraphOperation.GetAdjacencyMatrix(graph));
+                        mainInc.Show();
+                    }
+                }
             }
         }
     }
