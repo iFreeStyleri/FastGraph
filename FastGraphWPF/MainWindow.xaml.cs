@@ -58,10 +58,33 @@ namespace FastGraphWPF
         {
             if (TextRibs.Text != null)
             {
+                bool detected1 = false;
+                bool detected2 = false;
                 Match match = Regex.Match(TextRibs.Text, @"\((.*?),(.*?)\)");
                 if (match.Success)
                 {
-                    ComboRibs.Items.Add($"({match.Groups[1].Value},{match.Groups[2].Value})");
+                    foreach (var point in ComboPoints.Items)
+                    {
+                        if (int.Parse(match.Groups[1].Value) == (int)point)
+                        {
+                            detected1 = true;
+                            break;
+                        }
+                    }
+                    foreach (var point in ComboPoints.Items)
+                    {
+                        if (int.Parse(match.Groups[2].Value) == (int)point)
+                        {
+                            detected2 = true;
+                            break;
+                        }
+                    }
+                    if (detected1 == true && detected2 == true)
+                    {
+                        ComboRibs.Items.Add($"({match.Groups[1].Value},{match.Groups[2].Value})");
+                    }
+                    else
+                        MessageBox.Show("Указанные вами точки не существуют в графе!", "Warning", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
                 else
                 {
@@ -74,10 +97,21 @@ namespace FastGraphWPF
         {
             if (TextPoints.Text != null)
             {
+                bool detect = false;
+                foreach (var point in ComboPoints.Items)
+                {
+                    if (int.Parse(TextPoints.Text) == (int)point)
+                    {
+                        detect = true;
+                        break;
+                    }
+                }
                 try
                 {
-                    ComboPoints.Items.Add(Convert.ToInt32(TextPoints.Text));
-                }catch(FormatException)
+                    if(!detect)
+                        ComboPoints.Items.Add(Convert.ToInt32(TextPoints.Text));
+                }
+                catch (FormatException)
                 {
                     MessageBox.Show("Вы добавили не число!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -303,18 +337,22 @@ namespace FastGraphWPF
 
         private void Click_matrixIncContext(object sender, RoutedEventArgs e)
         {
-            if (GraphListView.SelectedItems != null)
-            {
-                foreach (var graph in Graphs)
-                {
-                    if ((graph.Id == ((GraphView)GraphListView.SelectedItem).Id))
-                    {
-                        
-                        MainIncidence mainInc = new MainIncidence(GraphOperation.GetIncidenceMatrix(graph));
-                        mainInc.Show();
-                    } 
-                }
-            }
+            //В РАЗРАБОТКЕ!
+
+            //if (GraphListView.SelectedItems != null)
+            //{
+            //    foreach (var graph in Graphs)
+            //    {
+            //        if ((graph.Id == ((GraphView)GraphListView.SelectedItem).Id))
+            //        {
+
+            //            MainIncidence mainInc = new MainIncidence(GraphOperation.GetIncidenceMatrix(graph));
+            //            mainInc.Show();
+            //        } 
+            //    }
+            //}
+
+            MessageBox.Show("Данная функция ещё не реализована!", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void Click_matrixAdjContext(object sender, RoutedEventArgs e)
